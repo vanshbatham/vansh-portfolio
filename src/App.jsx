@@ -97,7 +97,10 @@ const Navbar = () => {
 
   const handleLinkClick = (id) => {
     setIsOpen(false);
-    scrollToId(id);
+    // Added a small timeout to allow the menu to close smoothly without cancelling the scroll event on mobile
+    setTimeout(() => {
+      scrollToId(id);
+    }, 100);
   };
 
   return (
@@ -170,8 +173,9 @@ const Navbar = () => {
               {navLinks.map((item) => (
                 <button
                   key={item}
+                  type="button"
                   onClick={() => handleLinkClick(item)}
-                  className="text-left text-slate-300 hover:text-indigo-400 py-2 capitalize font-medium text-lg border-b border-slate-900 last:border-0"
+                  className="text-left text-slate-300 hover:text-indigo-400 py-2 capitalize font-medium text-lg border-b border-slate-900 last:border-0 cursor-pointer"
                 >
                   {item}
                 </button>
@@ -642,7 +646,6 @@ const Contact = () => {
                 <label className="block text-xs font-medium text-slate-400 mb-1 uppercase">
                   Name
                 </label>
-                {/* Fixed name="name" to match template {{name}} */}
                 <input
                   name="name"
                   required
@@ -654,7 +657,6 @@ const Contact = () => {
                 <label className="block text-xs font-medium text-slate-400 mb-1 uppercase">
                   Email
                 </label>
-                {/* Fixed name="email" to match template {{email}} */}
                 <input
                   name="email"
                   type="email"
@@ -667,7 +669,6 @@ const Contact = () => {
                 <label className="block text-xs font-medium text-slate-400 mb-1 uppercase">
                   Message
                 </label>
-                {/* Fixed name="message" to match template {{message}} */}
                 <textarea
                   name="message"
                   required
